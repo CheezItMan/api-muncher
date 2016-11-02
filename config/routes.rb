@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'recipes#search'
+  root to: 'recipes#index'
 
-  get '/search' => 'recipes#search'
+  get '/index' => 'recipes#index'
+
+  get '/search' => 'recipes#search', as: 'index_recipes'
 
   get '/list' => 'recipes#list', as: 'list_recipes'
 
