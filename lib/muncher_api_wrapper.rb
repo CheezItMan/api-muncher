@@ -7,13 +7,13 @@ class MuncherApiWrapper
 
   attr_reader :label, :image, :source, :url, :dietLabels, :healthLabels, :ingredientLines, :query
 
+
   def self.get_recipes(app_id = nil, app_key = nil, query)
     app_id = APP_ID if app_id == nil
     app_key = APP_KEY if app_key == nil
     url = BASE_URL + "search?" + "&app_id=#{app_id}" + "&app_key=#{app_key}" + "&q=#{query}"
     data = HTTParty.get(url)
     recipes = []
-
     # check to see if url is set up correctly to begin troubleshooting
 
     if data["hits"]
@@ -27,6 +27,22 @@ class MuncherApiWrapper
       return nil
     end
   end
+
+
+  def self.show_recipe(app_id = nil, app_key = nil)
+    app_id ||= APP_ID
+    app_key ||= APP_KEY
+    url = BASE_URL + "search?" + "&app_id=#{app_id}" + "&app_key=#{app_key}" + "&r=#{data[:hits]["recipe"]["uri"]}"
+
+    url = "&r=#{data[:hits]["recipe"]["uri"]}"
+
+
+
+  end
+
+
+
+
 end
 
 #
