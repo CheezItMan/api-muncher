@@ -48,6 +48,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'minitest-vcr'
   gem 'webmock'
+  gem 'simplecov'
 end
 
 group :development do

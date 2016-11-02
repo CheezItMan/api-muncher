@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  root to: 'recipes#search'
+
+  get '/search' => 'recipes#search'
+
+  get '/list' => 'recipes#list', as: 'list_recipes'
+
+  get '/show' => 'recipes#show', as: 'show_recipes'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
