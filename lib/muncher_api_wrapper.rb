@@ -1,11 +1,12 @@
 require 'httparty'
+require 'uri'
 
 class MuncherApiWrapper
   BASE_URL = "https://api.edamam.com/"
   APP_ID = ENV["MUNCHER_ID"]
   APP_KEY = ENV["MUNCHER_KEY"]
 
-  attr_reader :label, :image, :source, :url, :dietLabels, :healthLabels, :ingredientLines, :query
+  attr_reader :label, :image, :source, :url, :dietLabels, :healthLabels, :ingredientLines, :query, :uri
 
 
   def self.get_recipes(app_id = nil, app_key = nil, query)
@@ -18,7 +19,7 @@ class MuncherApiWrapper
 
     if data["hits"]
       data["hits"].each do |recipe|
-        wrapper = Recipe.new(recipe["recipe"]["label"], recipe["recipe"]["image"], recipe["recipe"]["source"], recipe["recipe"]["url"], recipe["recipe"]["dietLabels"], recipe["recipe"]["healthLabels"], recipe["recipe"]["ingredientLines"])
+        wrapper = Recipe.new(recipe["recipe"]["label"], recipe["recipe"]["image"], recipe["recipe"]["source"], recipe["recipe"]["url"], recipe["recipe"]["dietLabels"], recipe["recipe"]["healthLabels"], recipe["recipe"]["ingredientLines"], recipe["recipe"]["uri"])
 
         recipes << wrapper
       end
@@ -29,15 +30,12 @@ class MuncherApiWrapper
   end
 
 
-  def self.show_recipe(app_id = nil, app_key = nil)
-    app_id ||= APP_ID
-    app_key ||= APP_KEY
-    url = BASE_URL + "search?" + "&app_id=#{app_id}" + "&app_key=#{app_key}" + "&r=#{data[:hits]["recipe"]["uri"]}"
+  def self.show_recipe(uri)
+    url = BASE_URL + "search?" + "&r=#{uri}"
 
-    url = "&r=#{data[:hits]["recipe"]["uri"]}"
+    data = HTTParty.get(url)
 
-
-
+    return data
   end
 
 

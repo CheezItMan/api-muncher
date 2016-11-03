@@ -19,6 +19,8 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @params = params[:uri]
+    @recipe = MuncherApiWrapper.show_recipe(@params)
   end
 
 private
