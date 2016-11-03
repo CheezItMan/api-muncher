@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
   def list
     @data = MuncherApiWrapper.get_recipes(app_id = nil, app_key = nil, params[:query]) #try a form, may also need a params[:from]
+    @query = params[:query]
     if @data != nil && @data != []
       render status: :created
     else
