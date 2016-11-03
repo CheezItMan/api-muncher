@@ -1,0 +1,7 @@
+<a href="/"><%= image_tag("muncher.jpg", alt: "Muncher Home", class: "logo") %></a>
+
+<h2>Find a Recipe: </h2>
+  <%= form_tag(list_recipes_path, method: :get) do %>
+    <%= search_field_tag(:query, nil, :placeholder => "Search")%>
+    <%= submit_tag "Submit", class: 'button' %>
+  <% end %>
