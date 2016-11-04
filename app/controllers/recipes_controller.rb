@@ -17,9 +17,8 @@ class RecipesController < ApplicationController
     if @query.to_s.strip == ''
       redirect_to root_path, notice: "You must search for something before we can give you recipes!"
     end
-
-
   end
+
 
   def show
     @params = params[:uri]

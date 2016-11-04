@@ -8,10 +8,10 @@ class Recipe_Test < ActionController::TestCase
   #   end
   # end
 #
-  test "You must provide a name & id for a slack channel" do
-    assert_raises ArgumentError do
-      Slack_Channel.new nil, nil
-    end
+  # test "You must provide a search term for " do
+  #   assert_raises ArgumentError do
+  #     Slack_Channel.new nil, nil
+  #   end
 
 #     assert_raises ArgumentError do
 #       Slack_Channel.new "", ""

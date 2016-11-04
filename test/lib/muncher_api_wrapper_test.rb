@@ -10,18 +10,31 @@ class Muncher_Api_Test < ActionController::TestCase
     end
   end
 
-  # test "Can retrieve a list of channels" do
-  #   VCR.use_cassette("channels") do
-  #     channels = SlackApiWrapper.listchannels
-  #
-  #     assert channels.is_a? Array
-  #     assert channels.length > 0
-  #     channels.each do |ch|
-  #       assert ch.is_a? Slack_Channel
-  #     end
-  #   end
-  # end
-  #
+  test "Can retrieve a list of recipes" do
+    VCR.use_cassette("get-recipe-list") do
+      recipes = MuncherApiWrapper.get_recipes("durian")
+
+      assert recipes.is_a? Array
+      assert recipes.length > 0
+      recipes.each do |recipe|
+        assert recipe.is_a? Recipe
+      end
+    end
+  end
+
+  test "Can retrieve a single recipes" do
+    VCR.use_cassette("get-recipe-show") do
+      recipe = MuncherApiWrapper.show_recipe("http://www.edamam.com/ontologies/edamam.owl%23recipe_c9044642b3673039d454227917c51e11")
+
+      puts recipe.body
+      # assert recipe.is_a? Response
+      # assert recipe.length > 0
+      # recipe.each do |recipe|
+      #   assert recipe.is_a? Recipe
+      # end
+    end
+  end
+
   # test "Retrieves nil when the token is wrong" do
   #   VCR.use_cassette("bad-token") do
   #     channels = SlackApiWrapper.listchannels "bad-token"
