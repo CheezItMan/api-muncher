@@ -16,4 +16,6 @@
 
  */
 
- 
+ .pagination a, .pagination button {
+   display: inline-block;
+ }

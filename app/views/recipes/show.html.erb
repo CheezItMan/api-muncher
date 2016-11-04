@@ -2,7 +2,12 @@
 <% @recipe.each do |item| %>
   <h2><%= item["label"] %></h2>
   <%= image_tag(item["image"], class: 'image') %>
-  <h3><%= link_to "View the original recipe here", item["url"], alt: "External link to original recipe which opens in a new tab", target: "_blank" %></h3>
+
+  <% if item["url"] != nil %>
+    <h3><%= link_to "View the original recipe here", item["url"], alt: "External link to original recipe which opens in a new tab", target: "_blank" %></h3>
+  <% else %>
+    <%= "There is no original link available for this recipe." %>
+  <% end %>
 
   <h3>Ingredients:</h3>
   <% item["ingredientLines"].each do |ingredient| %>

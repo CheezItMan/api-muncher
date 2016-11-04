@@ -9,7 +9,7 @@ class MuncherApiWrapper
   def self.get_recipes(app_id = nil, app_key = nil, query)
     app_id = APP_ID if app_id == nil
     app_key = APP_KEY if app_key == nil
-    url = BASE_URL + "search?" + "&app_id=#{app_id}" + "&app_key=#{app_key}" + "&q=#{query}"
+    url = BASE_URL + "search?" + "&app_id=#{app_id}" + "&app_key=#{app_key}" + "&q=#{query}" + "&from=0&to=100"
     data = HTTParty.get(url)
     recipes = []
     # check to see if url is set up correctly to begin troubleshooting
@@ -28,7 +28,7 @@ class MuncherApiWrapper
 
 
   def self.show_recipe(uri)
-    url = BASE_URL + "search?" + "&r=#{uri}"
+    url = BASE_URL + "search?" + "&r=#{URI.encode(uri)}"
     data = HTTParty.get(url)
     return data
   end
