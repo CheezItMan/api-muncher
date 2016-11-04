@@ -16,9 +16,7 @@ class RecipesController < ApplicationController
     else
       render status: :service_unavailable
     end
-
   end
-
 
   def show
     @params = params[:uri]
