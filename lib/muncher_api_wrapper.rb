@@ -14,18 +14,15 @@ class MuncherApiWrapper
     recipes = []
     # check to see if url is set up correctly to begin troubleshooting
 
-    if data["hits"]
+    if data["hits"].length > 0
       data["hits"].each do |recipe|
-        wrapper = Recipe.new(recipe["recipe"]["label"], recipe["recipe"]["image"], recipe["recipe"]["source"], recipe["recipe"]["url"], recipe["recipe"]["dietLabels"], recipe["recipe"]["healthLabels"], recipe["recipe"]["ingredientLines"], recipe["recipe"]["uri"])
+        wrapper = Recipe.new(recipe["recipe"]["label"], recipe["recipe"]["image"], recipe["recipe"]["url"], recipe["recipe"]["dietLabels"], recipe["recipe"]["healthLabels"], recipe["recipe"]["ingredientLines"], recipe["recipe"]["uri"])
 
         recipes << wrapper
       end
       return recipes
-    else
-      return "We found no recipes matching your search."
     end
   end
-
 
   def self.show_recipe(uri)
     url = BASE_URL + "search?" + "&r=#{URI.encode(uri)}"

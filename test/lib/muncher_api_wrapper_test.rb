@@ -1,11 +1,13 @@
 require 'test_helper'
 require 'muncher_api_wrapper'
-require 'muncher_recipe'
+require 'recipe'
 
 class Muncher_Api_Test < ActionController::TestCase
 
   test "the truth" do
-    assert true
+    VCR.use_cassette("truthy") do
+      assert true
+    end
   end
 
   # test "Can retrieve a list of channels" do

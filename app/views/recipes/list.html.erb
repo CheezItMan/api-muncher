@@ -1,9 +1,13 @@
-<h2>We found the following recipes involving '<%= @query %>'!</h2>
+<% if @data != nil %>
 
-<% @data.each do |recipe| %>
-  <h3><%= link_to recipe.label, show_path(recipe.uri) %></h3>
-  <%= link_to image_tag(recipe.image), show_path(recipe.uri), class: 'image' %>
+  <h2>We found the following recipes involving '<%= @query %>'!</h2>
+  <% @data.each do |recipe| %>
+    <h3><%= link_to recipe.label, show_path(recipe.uri) %></h3>
+    <%= link_to image_tag(recipe.image), show_path(recipe.uri), class: 'image' %>
+  <% end %>
+  
+  <div class="pagination"><%= will_paginate @data %></div>
+
+<% else %>
+  <h2>We found no recipes matching '<%= @query %>'.</h2>
 <% end %>
-
-
-<div class="pagination"><%= will_paginate @data %></div>
