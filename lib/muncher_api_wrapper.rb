@@ -26,8 +26,8 @@ class MuncherApiWrapper
 
   def self.show_recipe(uri)
     url = BASE_URL + "search?" + "&r=#{URI.encode(uri)}"
-    data = HTTParty.get(url)
-    return data
+    response = HTTParty.get(url)
+    return response.parsed_response
   end
 
 

@@ -26,12 +26,8 @@ class Muncher_Api_Test < ActionController::TestCase
     VCR.use_cassette("get-recipe-show") do
       recipe = MuncherApiWrapper.show_recipe("http://www.edamam.com/ontologies/edamam.owl%23recipe_c9044642b3673039d454227917c51e11")
 
-      puts recipe.body
-      # assert recipe.is_a? Response
-      # assert recipe.length > 0
-      # recipe.each do |recipe|
-      #   assert recipe.is_a? Recipe
-      # end
+      assert recipe.is_a? Array
+      assert recipe.length == 1
     end
   end
 
