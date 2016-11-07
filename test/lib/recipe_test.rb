@@ -1,16 +1,18 @@
 require 'test_helper'
-require 'muncher_recipe'
+require 'recipe'
 
-class Muncher_Recipe_Test < ActionController::TestCase
-  test "the truth" do
-    assert true
-  end
+class Recipe_Test < ActionController::TestCase
+  # test "the truth" do
+  #   VCR.use_cassette("truthy") do
+  #     assert true
+  #   end
+  # end
 #
-#   test "You must provide a name & id for a slack channel" do
-#     assert_raises ArgumentError do
-#       Slack_Channel.new nil, nil
-#     end
-#
+  # test "You must provide a search term for " do
+  #   assert_raises ArgumentError do
+  #     Slack_Channel.new nil, nil
+  #   end
+
 #     assert_raises ArgumentError do
 #       Slack_Channel.new "", ""
 #     end

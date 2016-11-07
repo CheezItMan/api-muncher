@@ -15,6 +15,15 @@ class ActiveSupport::TestCase
       :record => :new_episodes,    # record new data when we don't have it yet
       :match_requests_on => [:method, :uri, :body] # The http method, URI and body of a request all need to match
     }
+
+    config.filter_sensitive_data("<MUNCHER_ID>") do
+      ENV['MUNCHER_ID']
+    end
+
+    config.filter_sensitive_data("<MUNCHER_KEY>") do
+      ENV['MUNCHER_KEY']
+    end
+
   end
 
   # Add more helper methods to be used by all tests here...
