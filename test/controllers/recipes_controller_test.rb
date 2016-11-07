@@ -21,6 +21,19 @@ class RecipesControllerTest < ActionController::TestCase
     end
   end
 
+  test "should redirect a blank query and or one made of spaces" do
+    VCR.use_cassette("blanks-check") do
+      get :list, {query: ""}
+      assert_response :redirect
+
+      get :list, {query: " "}
+      assert_response :redirect
+
+      get :list, {query: "  "}
+      assert_response :redirect
+    end
+  end
+
   test "should get show" do
     VCR.use_cassette("controller-show") do
       get :show, {uri: "http://www.edamam.com/ontologies/edamam.owl%23recipe_ecc112dcc32f9335f07cfcf6bfc5fc22"}
